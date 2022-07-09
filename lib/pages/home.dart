@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:notes_app/main.dart';
-List<NoteCard> cards = [];
+List<NoteCard> cards= [];
 int count =0;
 
 
@@ -18,10 +18,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  String up="init";
   @override
   void initState(){
     super.initState();
     widget.stream.listen((index) {
+      up=index.toString();
       mySetState(index);
     });
   }
@@ -40,10 +42,11 @@ class _HomeState extends State<Home> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          count++;
+
           setState((){
             cards.add(NoteCard(title: count.toString(), content: 'ex',indx: count,));
           });
+          count++;
 
         },
         backgroundColor: Colors.red,
@@ -51,7 +54,7 @@ class _HomeState extends State<Home> {
       ),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        actions: [ElevatedButton(onPressed: (){print(cards);}, child: Text("print"))],
+        actions: [ElevatedButton(onPressed: (){print(cards);}, child: Text(up))],
         title: const Text(
           "Notes",
           style: TextStyle(color: Colors.black),
@@ -102,6 +105,7 @@ class _NoteCardState extends State<NoteCard> {
                   setState((){
                     //cards.removeAt(widget.indx);
                     streamController.add(widget.indx);
+                    print("the real index is $")
                   });
 
                 },
@@ -119,9 +123,6 @@ class _NoteCardState extends State<NoteCard> {
     );
   }
 }
-
-//here's a change in the code
-//change 2
 
 
 
