@@ -105,7 +105,7 @@ class _NoteCardState extends State<NoteCard> {
                   setState((){
                     //cards.removeAt(widget.indx);
                     streamController.add(widget.indx);
-                    print("the real index is $")
+                    print("the real index is ");
                   });
 
                 },
