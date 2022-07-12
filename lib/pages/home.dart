@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:notes_app/main.dart';
+
+import 'newnote.dart';
+
 List<NoteCard> cards= [];
 int count =0;
-
 
 class Home extends StatefulWidget {
   Home({required this.stream});
@@ -40,7 +42,7 @@ class _HomeState extends State<Home> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const NewNote(),),);
           setState((){
             cards.add(NoteCard(title: count.toString(), content: 'ex',indx: count,));
           });
@@ -58,9 +60,13 @@ class _HomeState extends State<Home> {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(children: cards),
-      ),
+      body: ListView.builder(
+
+          itemCount: cards.length,
+        itemBuilder: (context,index){
+
+          return cards[index];
+      }),
     );
   }
 
@@ -121,6 +127,6 @@ class _NoteCardState extends State<NoteCard> {
     );
   }
 }
-
+//
 
 
