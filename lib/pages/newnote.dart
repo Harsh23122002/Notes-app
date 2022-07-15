@@ -10,6 +10,15 @@ class NewNote extends StatefulWidget {
 class _NewNoteState extends State<NewNote> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextField(),
+            TextFormField()
+          ],
+        ),
+      ),
+    );
   }
 }
